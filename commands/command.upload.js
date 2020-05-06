@@ -1,30 +1,51 @@
 const collect = require('../modules/img.collect');
 const resize = require('../modules/img.resize');
+const getBirthtime = require('../modules/img.birthtime');
+const save = require('../modules/img.save');
+const fs = require('fs');
 
 const colors = require('colors/safe');
 
-const upload = (folder) => {
-    // collect all images in folder
-    console.log(colors.yellow.bold('Start Collecting Images'));
-    const images = collect(folder);
-    console.log(`Found Images: ${colors.red.bold(images)}`)
-    console.log(colors.yellow.bold('Finished Collecting Images\n'));
+const upload = async (source, target) => {
+    console.log(`Start Uploading from ${colors.cyan(source)}, and saving to ${colors.cyan(target)}`);
 
-    // resize all images in folder
+    // collect all images in folder
+    const images = collect(source);
+
+    // manipulate all images in folder
     console.log(colors.yellow.bold('Start Manipulating Images'));
-    for (image of images) {
-        // TODO add target folder
-        resize(folder + "\\" + image, 800, 600);
-        // TODO put them in a folder named by their date of origin
-        console.log(colors.cyan('-----------\n'))
-    }
+
+
+    await asyncForEach(images, async image => {
+        const imgPath = source + "\\" + image;
+        console.log(`Starting Processing Image: ${colors.cyan(imgPath)}`)
+
+        const birthtime = getBirthtime(imgPath);
+        const resizedImageBuffer = await resize(imgPath, 800, 600);
+        save(resizedImageBuffer, target, image, birthtime);
+    });
+
+    // for (image of images) {
+    //     const imgPath = source + "\\" + image;
+    //     console.log(`Starting Processing Image: ${colors.cyan(imgPath)}`)
+
+    //     const birthtime = getBirthtime(imgPath);
+    //     const resizedImagePromise = resize(imgPath, 800, 600);
+    //     resizedImagePromise.then(dataBuffer => save(dataBuffer, target, image, birthtime));
+    // }
     console.log(colors.yellow.bold('Finished Manipulating Images\n'));
 
-    console.log(colors.yellow.bold('Start Uploading Resized Images'));
-
-    console.log(colors.yellow.bold('Finished Uploading Resized Images\n'));
-
+    // console.log(colors.yellow.bold('Start Uploading Resized Images'));
     // TODO save them to drive
+    // console.log(colors.yellow.bold('Finished Uploading Resized Images\n'));
+
+}
+
+
+async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+        await callback(array[index]);
+    }
 }
 
 module.exports = upload;

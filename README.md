@@ -3,7 +3,7 @@ Tool to manipulate a given directory of pictures (resizing, renaming) and Upload
 
 
 # Commands
-* upload - Resizes every image in given -folder (Default: $BASE_FOLDER) to 800x600 and Uploads them to the configured Google Drive
+* upload - Resizes every image in given -folder (Default: $BASE_SOURCE_FOLDER) to 800x600 and Uploads them to the configured Google Drive
 
 ## Configuration of Google Drive
 TODO
