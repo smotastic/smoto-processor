@@ -7,7 +7,7 @@ const resize = (imgPath, width, height) => {
             .resize(width, height)
             .jpeg()
             .toBuffer().then(buffer => {
-                console.log(`${colors.green('Resized')} to ${colors.cyan(width + "x" + height)}`);
+                console.log(`${colors.green('Resized')} to \t ${colors.cyan(width + "x" + height)}`);
                 resolve(buffer);
             });
     });

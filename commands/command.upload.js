@@ -13,13 +13,13 @@ const upload = async (source, target) => {
 
     // manipulate all images in folder
     console.log(colors.yellow.bold('Start Manipulating Images'));
-    await asyncForEach(images, async image => {
-        const imgPath = source + "\\" + image;
-        console.log(`Starting Processing Image: ${colors.cyan(imgPath)}`)
+    await asyncForEach(images, async imageName => {
+        const imgFullPath = source + "\\" + imageName;
+        console.log(`Starting Processing Image: ${colors.cyan(imgFullPath)}`)
 
-        const birthtime = getBirthtime(imgPath);
-        const resizedImageBuffer = await resize(imgPath, 800, 600);
-        save(resizedImageBuffer, target, image, birthtime);
+        const birthtime = getBirthtime(imgFullPath);
+        const resizedImageBuffer = await resize(imgFullPath, 800, 600);
+        save(resizedImageBuffer, target, imageName, birthtime);
     });
     console.log(colors.yellow.bold('Finished Manipulating Images\n'));
 

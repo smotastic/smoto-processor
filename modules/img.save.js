@@ -13,7 +13,7 @@ const save = (imageBuffer, targetFolder, imageName, birthtime) => {
     fs.mkdirSync(pathForFolder, { recursive: true });
     fs.writeFileSync(pathForImage, imageBuffer, { encoding: null });
 
-    console.log(`${colors.green('Save')} ${colors.cyan(pathForImage)}\n`);
+    console.log(`${colors.green('Save')} to \t ${colors.cyan(pathForImage)}\n`);
 }
 
 module.exports = save;

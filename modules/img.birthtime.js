@@ -5,7 +5,7 @@ const getBirthtime = (img) => {
 
     const { birthtime } = fs.statSync(img)
 
-    console.log(`${colors.green('Read Birthtime')} ${colors.cyan(birthtime)}`);
+    console.log(`${colors.green('Read Birthtime')} \t ${colors.cyan(birthtime)}`);
     return birthtime;
 }
 
