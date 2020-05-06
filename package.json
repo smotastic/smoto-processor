@@ -1,0 +1,23 @@
+{
+  "name": "smoto-processor",
+  "version": "1.0.0",
+  "description": "Tool to manipulate a given directory of pictures (resizing, renaming) and Upload them to Google Drive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smotastic/smoto-processor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smotastic/smoto-processor/issues"
+  },
+  "homepage": "https://github.com/smotastic/smoto-processor#readme",
+  "dependencies": {
+    "commander": "^5.1.0",
+    "dotenv": "^8.2.0"
+  }
+}
