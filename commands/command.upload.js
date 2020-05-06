@@ -2,7 +2,6 @@ const collect = require('../modules/img.collect');
 const resize = require('../modules/img.resize');
 const getBirthtime = require('../modules/img.birthtime');
 const save = require('../modules/img.save');
-const fs = require('fs');
 
 const colors = require('colors/safe');
 
@@ -29,7 +28,6 @@ const upload = async (source, target) => {
     // console.log(colors.yellow.bold('Finished Uploading Resized Images\n'));
 
 }
-
 
 async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
