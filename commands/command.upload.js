@@ -11,12 +11,14 @@ const upload = (folder) => {
     console.log(colors.yellow.bold('Finished Collecting Images\n'));
 
     // resize all images in folder
-    console.log(colors.yellow.bold('Start Resizing Images'));
+    console.log(colors.yellow.bold('Start Manipulating Images'));
     for (image of images) {
+        // TODO add target folder
         resize(folder + "\\" + image, 800, 600);
+        // TODO put them in a folder named by their date of origin
         console.log(colors.cyan('-----------\n'))
     }
-    console.log(colors.yellow.bold('Finished Resizing Images\n'));
+    console.log(colors.yellow.bold('Finished Manipulating Images\n'));
 
     console.log(colors.yellow.bold('Start Uploading Resized Images'));
 
