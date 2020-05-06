@@ -1,17 +1,21 @@
 const sharp = require('sharp');
+const colors = require('colors/safe');
 
 const resize = (imgPath, width, height) => {
     let [fileName, fileType] = imgPath.split('.');
-    console.log(`Starting to Resize ${imgPath} to ${width}x${height}`);
+    console.log(`Starting Resize \t ${colors.cyan(imgPath)} to ${colors.cyan(width)}x${colors.cyan(height)}`);
 
     let newPath = `${fileName}_${width}_${height}.${fileType}`;
+
+    console.log(`New FileName \t\t ${colors.cyan(fileName)}${colors.green(`_${width}_${height}`)}.${colors.cyan(fileType)}`);
 
     sharp(imgPath)
         .resize(width, height)
         .toFile(newPath, function (err) {
-            console.err(err);
+            console.error(err);
         });
-    console.log(`----------- Finished Resizing ${imgPath}\n`);
+    console.log(`Finished Resize ${imgPath}`);
+
     return newPath;
 }
 
