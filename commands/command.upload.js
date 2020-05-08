@@ -1,6 +1,9 @@
+const path = require('path');
+
 const collect = require('../modules/img.collect');
 const resize = require('../modules/img.resize');
 const getBirthtime = require('../modules/img.birthtime');
+const getReadableDate = require('../modules/misc.readableDate');
 const save = require('../modules/img.save');
 
 const colors = require('colors/safe');
@@ -19,7 +22,8 @@ const upload = async (source, target) => {
 
         const birthtime = getBirthtime(imgFullPath);
         const resizedImageBuffer = await resize(imgFullPath, 800, 600);
-        save(resizedImageBuffer, target, imageName, birthtime);
+        let pathForResizedFolder = path.resolve(target, getReadableDate(birthtime));
+        save(resizedImageBuffer, pathForResizedFolder, imageName, '_800x600');
     });
     console.log(colors.yellow.bold('Finished Manipulating Images\n'));
 

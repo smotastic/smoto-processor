@@ -1,16 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const colors = require('colors/safe');
-const getReadableDate = require('./misc.readableDate');
 
-const save = (imageBuffer, targetFolder, imageName, birthtime) => {
+const save = (imageBuffer, targetFolder, imageName, postfix) => {
 
     let [fileName] = imageName.split('.');
-    let newFileName = `${fileName}_800x600.jpg`;
-    let pathForFolder = path.resolve(targetFolder, getReadableDate(birthtime));
-    let pathForImage = path.resolve(pathForFolder, newFileName);
+    let newFileName = `${fileName}${postfix}.jpg`;
+   
+    let pathForImage = path.resolve(targetFolder, newFileName);
 
-    fs.mkdirSync(pathForFolder, { recursive: true });
+    fs.mkdirSync(targetFolder, { recursive: true });
     fs.writeFileSync(pathForImage, imageBuffer, { encoding: null });
 
     console.log(`${colors.green('Save')} to \t ${colors.cyan(pathForImage)}\n`);
