@@ -40,7 +40,7 @@ const upload = async (source, target) => {
         const copiedImageBuffer = await copy(imgFullPath);
         save(copiedImageBuffer, pathForImage, imageName);
 
-        // TODO upload compressed one
+        // upload compressed one
         await uploadToDrive(imageName, pathForResizedImage, birthtime);
 
         console.log(`\nFinished Processing Image`)
