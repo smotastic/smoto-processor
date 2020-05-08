@@ -2,11 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const colors = require('colors/safe');
 
-const save = (imageBuffer, targetFolder, imageName, postfix) => {
+const save = (imageBuffer, targetFolder, imageName, forcedFileType, postfix = "") => {
 
-    let [fileName] = imageName.split('.');
-    let newFileName = `${fileName}${postfix}.jpg`;
-   
+    let [fileName, fileType] = imageName.split('.');
+    fileType = forcedFileType ? forcedFileType : fileType;
+    let newFileName = `${fileName}${postfix}.${fileType}`;
+
     let pathForImage = path.resolve(targetFolder, newFileName);
 
     fs.mkdirSync(targetFolder, { recursive: true });

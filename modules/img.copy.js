@@ -1,16 +1,14 @@
 const sharp = require('sharp');
 const colors = require('colors/safe');
 
-const resize = (imgPath, width, height) => {
+const copy = (imgPath) => {
     return new Promise((resolve, reject) => {
         sharp(imgPath)
-            .resize(width, height)
-            .jpeg()
             .toBuffer().then(buffer => {
-                console.log(`${colors.green('Resized')} to \t ${colors.cyan(width + "x" + height)}`);
+                console.log(`${colors.green('Copied')}`);
                 resolve(buffer);
             }).catch(error => reject(error));
     });
 }
 
-module.exports = resize;
+module.exports = copy;
