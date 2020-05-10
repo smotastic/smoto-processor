@@ -1,14 +1,9 @@
-const sharp = require('sharp');
+const fs = require('fs');
 const colors = require('colors/safe');
 
-const copy = (imgPath) => {
-    return new Promise((resolve, reject) => {
-        sharp(imgPath)
-            .toBuffer().then(buffer => {
-                console.log(`${colors.green('Copied')}`);
-                resolve(buffer);
-            }).catch(error => reject(error));
-    });
+const copy = (source, target) => {
+    fs.copyFileSync(source, target);
+    console.log(`${colors.green('Copied')} to \t ${colors.cyan(target)}`);
 }
 
 module.exports = copy;

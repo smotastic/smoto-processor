@@ -37,8 +37,7 @@ const upload = async (source, target) => {
         save(resizedImageBuffer, pathForResizedImage, imageName);
 
         // original one
-        const copiedImageBuffer = await copy(imgFullPath);
-        save(copiedImageBuffer, pathForImage, imageName);
+        copy(imgFullPath, path.resolve(pathForImage, imageName));
 
         // upload compressed one
         await uploadToDrive(imageName, pathForResizedImage, birthtime);
