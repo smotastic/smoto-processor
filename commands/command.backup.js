@@ -29,9 +29,10 @@ const backup = async (source, target, upload) => {
     console.log(colors.yellow.bold('Start Manipulating Images'));
     await asyncForEach(images, async imageName => {
         const imgFullPath = path.resolve(source, imageName);
+        console.log(`\nStarting Processing Image: ${colors.cyan(imgFullPath)}`)
+
         const birthtime = getReadableDate(getBirthtime(imgFullPath));
         let pathForImage = path.resolve(target, birthtime);
-        console.log(`\nStarting Processing Image: ${colors.cyan(imgFullPath)}`)
 
         // compressed one
         const resizedImageBuffer = await resize(imgFullPath, 800, 600);
