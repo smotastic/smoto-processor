@@ -11,12 +11,14 @@ const auth = require('../modules/drive.auth.js')
 
 const colors = require('colors/safe');
 
-const upload = async (source, target) => {
+const backup = async (source, target, upload) => {
 
     console.log(`${colors.yellow.bold('Begin Save and Upload.')} \n Source: ${source}\n Target: ${target}`)
 
     // auth for google drive
-    await auth();
+    if (upload) {
+        await auth();
+    }
 
     console.log(`Start Uploading from ${colors.cyan(source)}, and saving to ${colors.cyan(target)}`);
 
@@ -40,7 +42,10 @@ const upload = async (source, target) => {
         copy(imgFullPath, path.resolve(pathForImage, imageName));
 
         // upload compressed one
-        await uploadToDrive(imageName, pathForResizedImage, birthtime);
+        if (upload) {
+            await uploadToDrive(imageName, pathForResizedImage, birthtime);
+        }
+
 
         console.log(`\nFinished Processing Image`)
 
@@ -54,4 +59,4 @@ async function asyncForEach(array, callback) {
     }
 }
 
-module.exports = upload;
+module.exports = backup;
