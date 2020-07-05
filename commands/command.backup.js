@@ -11,7 +11,7 @@ const auth = require('../modules/drive.auth.js')
 
 const colors = require('colors/safe');
 
-const backup = async (source, target, upload) => {
+const backup = async (source, target, upload, postfix) => {
 
     console.log(`${colors.yellow.bold('Begin Save and Upload.')} \n Source: ${source}\n Target: ${target}`)
 
@@ -32,7 +32,7 @@ const backup = async (source, target, upload) => {
         console.log(`\nStarting Processing Image: ${colors.cyan(imgFullPath)}`)
 
         const birthtime = getReadableDate(getBirthtime(imgFullPath));
-        let pathForImage = path.resolve(target, birthtime);
+        let pathForImage = path.resolve(target, birthtime + (postfix ? `_${postfix}` : ""));
 
         // compressed one
         const resizedImageBuffer = await resize(imgFullPath, 800, 600);

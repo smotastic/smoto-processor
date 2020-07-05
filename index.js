@@ -14,6 +14,7 @@ program
     .option("-s, --source [value]", "Source of folder of Images which will be resized and uploaded. Defaults to $BASE_SOURCE_FOLDER", process.env.BASE_SOURCE_FOLDER)
     .option("-t, --target [value]", "Target Folder where the resized Pictures will be saved, additionaly to being uploaded. Defaults to $BASE_TARGET_FOLDER", process.env.BASE_TARGET_FOLDER)
     .option("-n, --no-upload", "If this option is set, the upload to drive will be prevented. Defaults to false", false)
-    .action(({ source, target, upload }) => backup(source, target, upload))
+    .option("-p, --postfix [value]", "The postfix to attach to the name of each created folder")
+    .action(({ source, target, upload, postfix }) => backup(source, target, upload, postfix))
 
 program.parse(process.argv);
